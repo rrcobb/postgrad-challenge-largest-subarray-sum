@@ -7,8 +7,11 @@
 // array[i] is an integer
 // MISUNDERSTOOD QUESTION: No need to sort array
 function largestSubarraySum(array){
-  // Sum initialized at first item in array
-  let sum = array[0];
+  // // Sum initialized at first item in array
+  // let sum = array[0];
+
+  // Initialize sum at 0
+  let sum = 0;
   let largestSubarray = [];
 
   console.log("array = ", array);
@@ -16,6 +19,8 @@ function largestSubarraySum(array){
   // If array has 1 item, just return the sum
   if(array.length === 1){
     largestSubarray.push(array[0]);
+    // return sum;
+    sum += array[0];
     return sum;
   } 
 
@@ -33,7 +38,8 @@ function largestSubarraySum(array){
   else {
     let innerSum;
 
-    for(let num of array){
+    for(let index in array){
+      let num = array[index];
       // Gets rid of negative numbers
       // MISUNDERSTOOD QUESTION: Don't skip over numbers
       // if(innerSum + num > innerSum){
@@ -41,7 +47,17 @@ function largestSubarraySum(array){
       //   // Continue to next iteration
       //   continue;
       // }
-      
+
+      // Initialize innerSum at array[0]
+      if (index === 0){
+        innerSum = num;
+        continue;
+      }
+
+      if(sum + num > sum){
+        sum += num;
+        continue;
+      }
     }
 
     sum = innerSum;
