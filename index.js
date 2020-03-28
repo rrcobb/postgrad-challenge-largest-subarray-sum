@@ -82,9 +82,11 @@ function largestSubarraySum(array){
 
   // Removed negatives at beginning of array
   while(array[0] < 0){
-    array.shift();
-    largestSubarraySum(array);
+    let removedNum = array.shift();
+    console.log(removedNum + " has been removed")
   }
+
+
   for(let num of largestSubarray){
     sum += num;
   }
