@@ -20,6 +20,7 @@ function largestSubarraySum(array){
   if(array.length === 1){
     largestSubarray.push(array[0]);
     // return sum;
+    // Make sure sum is not 0
     sum += array[0];
     return sum;
   } 
@@ -35,33 +36,65 @@ function largestSubarraySum(array){
   // } 
 
   // Else there are 2 or more numbers in the array
-  else {
-    let innerSum;
+  // Starting with assuming there's 2 items in array
+  // else {
+  //   let innerSum;
 
-    for(let index in array){
-      let num = array[index];
-      // Gets rid of negative numbers
-      // MISUNDERSTOOD QUESTION: Don't skip over numbers
-      // if(innerSum + num > innerSum){
-      //   innerSum += num;
-      //   // Continue to next iteration
-      //   continue;
-      // }
+  //   for(let index in array){
+  //     let num = array[index];
+  //     // Gets rid of negative numbers
+  //     // MISUNDERSTOOD QUESTION: Don't skip over numbers
+  //     // if(innerSum + num > innerSum){
+  //     //   innerSum += num;
+  //     //   // Continue to next iteration
+  //     //   continue;
+  //     // }
 
-      // Initialize innerSum at array[0]
-      if (index === 0){
-        innerSum = num;
-        continue;
-      }
+  //     // Initialize innerSum at array[0]
+  //     if (index === 0){
+  //       innerSum = num;
+  //       largestSubarray.push(num);
+  //       continue;
+  //     }
 
-      if(sum + num > sum){
-        sum += num;
-        continue;
-      }
+  //     else if(sum + num > sum){
+  //       sum += num;
+  //       largestSubarray.push(num);
+  //       continue;
+  //     }
+  //   }
+
+  //   sum = innerSum;
+  // }
+
+  // Check to see if all positive
+  for(let num of array){
+    // Currently ignores negatives at end
+    if(num >= 0){
+      largestSubarray.push(num);
+      continue;
+    } else{
+      // Breaks out of loop as soon as a negative num is hit
+      console.log(num, " is negative");
+      break;
     }
-
-    sum = innerSum;
   }
+
+  // Removed negatives at beginning of array
+  while(array[0] < 0){
+    array.shift();
+    largestSubarraySum(array);
+  }
+  for(let num of largestSubarray){
+    sum += num;
+  }
+
+  // If all nums are positive
+  // Couldn't get map to work
+  // array.map((val) => {
+  //   this.sum += val;
+  //   console.log(this.sum.toString());
+  // })
   
   console.log("sum = " + sum);
   console.log("");
@@ -70,8 +103,11 @@ function largestSubarraySum(array){
 
 // Testcases:
 let array = [1, -1, 5, 3, -7, 4, 5, 6, -100, 4];
+// 1, [1]
 let array1 = [1];
+// 1, [1]
 let array2 = [1, -1];
+// 4, [4]
 let array3 = [-5, 4];
 
 // 0, subarray = [1, -1]
