@@ -40,9 +40,9 @@ describe('#largestSubarraySum', function() {
   });
 
   it('runs within the time limit - in O(n) time, instead of O(n^2) time', function () {
-    let timeLimit = 1000; // 1 seconds
+    const timeLimit = 1000; // 1 seconds
     this.timeout(timeLimit)
-    let array = new Array(1000).fill(1); // should result in sum of 10000
-    expect(largestSubarraySum(array)).toEqual(1000)
+    let array = new Array(10000).fill(1); // should result in sum of 10000
+    expect(largestSubarraySum(array)).toEqual(10000)
   });
 });
