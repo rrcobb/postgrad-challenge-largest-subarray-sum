@@ -35,8 +35,8 @@ describe('#largestSubarraySum', function() {
 	})
 
   it('returns the largest subarray sum when all the items are negative', function() {
-		let array = [-1, -1, -5, -3, -7, -4, -5, -6, -100, -4]
-		expect(largestSubarraySum(array)).toEqual(0)
+		let array = [-7, -1, -5, -3, -7, -4, -5, -6, -100, -4]
+		expect(largestSubarraySum(array)).toEqual(-1)
   });
 
   it('runs within the time limit - in O(n) time, instead of O(n^2) time', function () {
